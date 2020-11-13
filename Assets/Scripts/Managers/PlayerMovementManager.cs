@@ -24,7 +24,7 @@ namespace Managers
             var inputVertical = Input.GetAxisRaw("Vertical");
 
             var direction = new Vector3(0, 0, inputVertical);
-            var playerRotation = _playerTransform.rotation;
+            var playerRotation = _playerRigitbody.rotation;
             _moveDirection = playerRotation * direction;
 
             _rotationDirection = new Vector3(0, inputHorizontal, 0);
