@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Managers
 {
@@ -9,7 +10,7 @@ namespace Managers
 
 
         private const float MovementSpeed = 2.5f;
-        private const float RotationSpeed = 2.5f;
+        private const float RotationSpeed = 3f;
 
         private Vector3 _smoothMoveVelocity;
         private Vector3 _moveAmount;
@@ -29,7 +30,7 @@ namespace Managers
             _rotationDirection = new Vector3(0, inputHorizontal, 0);
         }
 
-        private void FixedUpdate()
+        public void Move()
         {
             var playerRotation = _playerRigitbody.rotation;
             var deltaRotation = Quaternion.Euler(_rotationDirection);

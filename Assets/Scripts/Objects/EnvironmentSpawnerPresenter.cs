@@ -1,50 +1,38 @@
-using System;
 using Managers;
 using UnityEngine;
-using Utils;
-using Random = UnityEngine.Random;
-
 
 namespace Objects
 {
-
-    public class EnvironmentSpawner : MonoBehaviour
+    public class EnvironmentSpawnerPresenter: MonoBehaviour
     {
-        [SerializeField] private Transform _planetGO;
-        [SerializeField] private Transform _earthGO;
-        [SerializeField] private ItemToSpawn[] _rocks;
-
-        [SerializeField] private uint _pointsOnPlanetCount;
-        [SerializeField] private uint _rockElementsCount;
-
-        [SerializeField] private BusyZone[] _busyZones;
-
+        [SerializeField] private EnvironmentSpawnerView _spawnerView;
+        
         private PointsManager _pointsManager;
         private uint _spawnedObjects;
         public void GenerateEnvironment()
         {
-            _pointsManager = new PointsManager(_pointsOnPlanetCount, _busyZones);
+            _pointsManager = new PointsManager(_spawnerView.PointsOnPlanetCount, _spawnerView.BusyZones);
             SpawnRocks();
         }
 
         private void SpawnRocks()
         {
             var weightSum = 0;
-            foreach (var rock in _rocks)
+            foreach (var rock in _spawnerView.Rocks)
             {
                 weightSum += rock.weight;
             }
 
-            var rocksLeft = _rockElementsCount;
-            foreach (var rock in _rocks)
+            var rocksLeft = _spawnerView.RockElementsCount;
+            foreach (var rock in _spawnerView.Rocks)
             {
-                var rocksCount = (uint)(_rockElementsCount * rock.weight / weightSum);
+                var rocksCount = (uint)(_spawnerView.RockElementsCount * rock.weight / weightSum);
                 Debug.Log($"rockCount {rocksCount} {rock.weight}");
                 SpawnElements(rock.prefab, rocksCount, true);
                 rocksLeft -= rocksCount;
             }
 
-            var extraRock = _rocks[Random.Range(0, _rocks.Length)];
+            var extraRock = _spawnerView.Rocks[Random.Range(0, _spawnerView.Rocks.Length)];
             SpawnElements(extraRock.prefab, rocksLeft, true);
             Debug.Log(_spawnedObjects);
         }
@@ -59,9 +47,9 @@ namespace Objects
 
             foreach (var position in positions)
             {
-                var element = Instantiate(prefab, _planetGO);
-                element.transform.position = position * _earthGO.transform.localScale.x/2.2f;
-                element.transform.LookAt(_earthGO);
+                var element = Instantiate(prefab, _spawnerView.PlanetGO);
+                element.transform.position = position * _spawnerView.EarthGO.transform.localScale.x/2.2f;
+                element.transform.LookAt(_spawnerView.EarthGO);
                 element.transform.Rotate(-90, 0, 0);
 
                 if (needYRotation)

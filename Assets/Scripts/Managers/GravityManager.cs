@@ -7,22 +7,16 @@ namespace Managers
     {
         [SerializeField] private Transform _earthGO;
         [SerializeField] private Rigidbody _playerRigitbody;
-        [SerializeField] private Transform _playerTransform;
 
         private const float Gravity = -9.8f;
 
-        private void FixedUpdate()
+        public void Attract()
         {
-            Attract();
-        }
-
-        private void Attract()
-        {
-            var gravityUp = (_playerTransform.position - _earthGO.position).normalized;
-            var localUp = _playerTransform.up;
+            var gravityUp = (_playerRigitbody.position - _earthGO.position).normalized;
+            var localUp = _playerRigitbody.transform.up;
 
             _playerRigitbody.AddForce(gravityUp * Gravity);
-            _playerRigitbody.MoveRotation(Quaternion.FromToRotation(localUp, gravityUp) * _playerTransform.rotation);
+            _playerRigitbody.MoveRotation(Quaternion.FromToRotation(localUp, gravityUp) * _playerRigitbody.rotation);
         }
     }
 }
