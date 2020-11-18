@@ -18,7 +18,6 @@ namespace Managers
         {
             _playerMovementManager.Move();
             _gravityManager.Attract();
-            
         }
     }
 }

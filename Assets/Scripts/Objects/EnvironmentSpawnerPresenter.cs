@@ -1,3 +1,4 @@
+using System.Linq;
 using Managers;
 using UnityEngine;
 
@@ -11,28 +12,28 @@ namespace Objects
         private uint _spawnedObjects;
         public void GenerateEnvironment()
         {
-            _pointsManager = new PointsManager(_spawnerView.PointsOnPlanetCount, _spawnerView.BusyZones);
+            _pointsManager = new PointsManager(_spawnerView.pointsOnPlanetCount, _spawnerView.busyZones);
             SpawnRocks();
         }
 
         private void SpawnRocks()
         {
             var weightSum = 0;
-            foreach (var rock in _spawnerView.Rocks)
+            foreach (var rock in _spawnerView.rocks)
             {
                 weightSum += rock.weight;
             }
 
-            var rocksLeft = _spawnerView.RockElementsCount;
-            foreach (var rock in _spawnerView.Rocks)
+            var rocksLeft = _spawnerView.rockElementsCount;
+            foreach (var rock in _spawnerView.rocks)
             {
-                var rocksCount = (uint)(_spawnerView.RockElementsCount * rock.weight / weightSum);
+                var rocksCount = (uint)(_spawnerView.rockElementsCount * rock.weight / weightSum);
                 Debug.Log($"rockCount {rocksCount} {rock.weight}");
                 SpawnElements(rock.prefab, rocksCount, true);
                 rocksLeft -= rocksCount;
             }
 
-            var extraRock = _spawnerView.Rocks[Random.Range(0, _spawnerView.Rocks.Length)];
+            var extraRock = _spawnerView.rocks[Random.Range(0, _spawnerView.rocks.Length)];
             SpawnElements(extraRock.prefab, rocksLeft, true);
             Debug.Log(_spawnedObjects);
         }
@@ -47,9 +48,9 @@ namespace Objects
 
             foreach (var position in positions)
             {
-                var element = Instantiate(prefab, _spawnerView.PlanetGO);
-                element.transform.position = position * _spawnerView.EarthGO.transform.localScale.x/2.2f;
-                element.transform.LookAt(_spawnerView.EarthGO);
+                var element = Instantiate(prefab, _spawnerView.planetGO);
+                element.transform.position = (position * _spawnerView.earthGO.transform.localScale.x)/2.2f;
+                element.transform.LookAt(_spawnerView.earthGO);
                 element.transform.Rotate(-90, 0, 0);
 
                 if (needYRotation)

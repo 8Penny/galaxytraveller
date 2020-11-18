@@ -18,13 +18,13 @@ namespace Objects
 
         [SerializeField] private BusyZone[] _busyZones;
 
-        public Transform PlanetGO => _planetGO;
-        public Transform EarthGO => _earthGO;
-        public ItemToSpawn[] Rocks => _rocks;
+        public Transform planetGO => _planetGO;
+        public Transform earthGO => _earthGO;
+        public ItemToSpawn[] rocks => _rocks;
 
-        public uint PointsOnPlanetCount => _pointsOnPlanetCount;
-        public uint RockElementsCount => _rockElementsCount;
+        public uint pointsOnPlanetCount => _pointsOnPlanetCount;
+        public uint rockElementsCount => _rockElementsCount;
 
-        public BusyZone[] BusyZones => _busyZones;
+        public BusyZone[] busyZones => _busyZones;
     }
 }
