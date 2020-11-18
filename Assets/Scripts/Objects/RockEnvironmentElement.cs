@@ -2,18 +2,18 @@ using UnityEngine;
 
 namespace Objects
 {
-    public class RockEnvironmentElement: EnvironmentElement
+    public class RockEnvironmentElement : EnvironmentElement
     {
         private int _rockType;
         public Vector3 position => _position;
         public Vector3 rotation => _rotation;
-        public int rockType => _eType;
+        public int Id => _id;
 
-        public RockEnvironmentElement(Vector3 pos, Vector3 rot, int rockType)
+        public RockEnvironmentElement(Vector3 pos, Vector3 rot, int id)
         {
             _position = pos;
             _rotation = rot;
-            _eType = rockType;
+            _id = id;
         }
     }
 }

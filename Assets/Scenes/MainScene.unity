@@ -278,13 +278,13 @@ MonoBehaviour:
   _planetGO: {fileID: 609650861}
   _earthGO: {fileID: 293387464}
   _rocks:
-  - id: 1
+  - id: 0
     prefab: {fileID: 9025192919380440712, guid: 5ca5284fe03cbee409291f62ddb9c24a, type: 3}
     weight: 1
-  - id: 2
+  - id: 1
     prefab: {fileID: 3049796940856443346, guid: 795e6fdb0c791674788abcb6fc8d506c, type: 3}
     weight: 2
-  - id: 3
+  - id: 2
     prefab: {fileID: 193073023391597882, guid: 85f278de6c824af4aac231949f475715, type: 3}
     weight: 1
   _pointsOnPlanetCount: 200

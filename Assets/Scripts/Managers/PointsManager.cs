@@ -18,7 +18,7 @@ namespace Managers
             CreateFreePoints(pointsCount);
         }
 
-        public Vector3[] GetFreePoints(uint numberOfPoints)
+        public Vector3[] GetRawFreePositions(uint numberOfPoints)
         {
             if (numberOfPoints > freePointsLen)
             {
@@ -63,8 +63,8 @@ namespace Managers
                 var y = pointId * off - 1 + (off / 2);
                 var r = Mathf.Sqrt(1 - y * y);
                 var phi = pointId * inc;
-                
-                var point =  new Vector3(Mathf.Cos(phi) * r, y, Mathf.Sin(phi) * r);
+
+                var point = new Vector3(Mathf.Cos(phi) * r, y, Mathf.Sin(phi) * r);
 
                 if (IsPointInFreeZone(point))
                 {
@@ -72,15 +72,15 @@ namespace Managers
                     lastAddedIndex += 1;
                 }
             }
-            
-            
+
+
             var result = points.Take(lastAddedIndex).ToArray();
 
             var rnd = new System.Random();
             rnd.Shuffle(result, lastAddedIndex);
             _freePoints = ConvertArrayToStack(result);
         }
-        
+
         private static Stack<Vector3> ConvertArrayToStack(Vector3[] array)
         {
             var stack = new Stack<Vector3>();
@@ -102,7 +102,7 @@ namespace Managers
             {
                 return true;
             }
-            
+
             foreach (var zone in _busyZones)
             {
                 var distance = Vector3.Distance(point, zone.position);
@@ -111,7 +111,7 @@ namespace Managers
                     return false;
                 }
             }
-            
+
             return true;
         }
     }

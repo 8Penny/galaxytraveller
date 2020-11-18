@@ -6,7 +6,7 @@ public abstract class EnvironmentElement
       {
             protected Vector3 _position;
             protected Vector3 _rotation;
-            protected int _eType;
+            protected int _id;
       }
 }
 
