@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 using UnityEngine;
 
 namespace Managers
@@ -6,8 +7,6 @@ namespace Managers
     public class PlayerMovementManager : MonoBehaviour
     {
         [SerializeField] private Rigidbody _playerRigitbody;
-        [SerializeField] private Transform _playerTransform;
-
 
         private const float MovementSpeed = 2.5f;
         private const float RotationSpeed = 3f;
@@ -17,7 +16,15 @@ namespace Managers
         private Vector3 _moveDirection;
         private Vector3 _rotationDirection;
 
+        private Vector3 _playerPosition;
+        private Quaternion _playerRotation;
 
+
+        private void Start()
+        {
+            _playerRigitbody.freezeRotation = true;
+        }
+        
         private void Update()
         {
             var inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -29,24 +36,40 @@ namespace Managers
 
             _rotationDirection = new Vector3(0, inputHorizontal, 0);
         }
+        public void MovePlayer()
+        {
+            Move();
+            SavePlayerPosition();
+        }
 
-        public void Move()
+        private void Move()
         {
             var playerRotation = _playerRigitbody.rotation;
             var deltaRotation = Quaternion.Euler(_rotationDirection);
             var targetRotation = playerRotation * deltaRotation;
-            var smoothRotation = Quaternion.Lerp(_playerRigitbody.rotation, targetRotation,
+            _playerRotation = Quaternion.Lerp(_playerRigitbody.rotation, targetRotation,
                 Time.fixedDeltaTime * RotationSpeed * 100f);
 
-            var position = _playerRigitbody.position + _moveDirection * (MovementSpeed * Time.fixedDeltaTime);
+            _playerPosition = _playerRigitbody.position + _moveDirection * (MovementSpeed * Time.fixedDeltaTime);
 
-            _playerRigitbody.MoveRotation(smoothRotation);
-            _playerRigitbody.MovePosition(position);
+            _playerRigitbody.MoveRotation(_playerRotation);
+            _playerRigitbody.MovePosition(_playerPosition);
         }
 
-        private void Start()
+        private void SavePlayerPosition()
         {
-            _playerRigitbody.freezeRotation = true;
+            var player = Game.instance.player;
+            player.SetPosition(_playerPosition);
+            player.SetRotation(_playerRotation.eulerAngles.y);
         }
+
+
+        public void UpdatePlayerPositionAndRotation()
+        {
+            var player = Game.instance.player;
+            _playerRigitbody.MoveRotation(Quaternion.Euler(0, player.rotation, 0));
+            _playerRigitbody.MovePosition(player.position);
+        }
+
     }
 }

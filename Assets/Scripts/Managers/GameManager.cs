@@ -13,16 +13,20 @@ namespace Managers
         [SerializeField] private PlayerMovementManager _playerMovementManager;
 
         private SaveManager _saveManager;
+        private bool _loaded;
 
         private void Start()
         {
+            var game = new Game();
+            
             _saveManager = new SaveManager();
             var save = _saveManager.LoadGame();
-            var game = new Game();
+            
 
             if (save != null)
             {
                 game.LoadGameData(save);
+                _playerMovementManager.UpdatePlayerPositionAndRotation();
             }
             else
             {
@@ -31,12 +35,22 @@ namespace Managers
             }
 
             _environmentSpawner.InstantiateEnvironment(game.homePlanet.environmentElements);
+            _loaded = true;
         }
 
         private void FixedUpdate()
         {
-            _playerMovementManager.Move();
+            if (!_loaded)
+            {
+                return;
+            }
+            _playerMovementManager.MovePlayer();
             _gravityManager.Attract();
+        }
+
+        private void OnApplicationQuit()
+        {
+            _saveManager.SaveGame();
         }
     }
 }

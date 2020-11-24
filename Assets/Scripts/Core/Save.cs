@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Objects;
 using Storage;
+using Utils;
 
 namespace Core
 {
@@ -14,5 +15,8 @@ namespace Core
         public float playerEnergy;
         public float playerHealth;
         public uint playerRang;
+
+        public SerializableVector3 playerPosition;
+        public float playerRotation;
     }
 }

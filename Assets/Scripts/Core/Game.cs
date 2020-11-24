@@ -33,6 +33,9 @@ namespace Core
             _player.SetPoints(save.playerPoints);
             _player.SetRang(save.playerRang);
             _player.SetHealth(save.playerHealth);
+            
+            _player.SetPosition(save.playerPosition);
+            _player.SetRotation(save.playerRotation);
 
             _homePlanet.FillEnvironmentElements(save.homePlanetElements);
         }

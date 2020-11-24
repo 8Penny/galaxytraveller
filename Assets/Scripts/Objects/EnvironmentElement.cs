@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿
+using Utils;
 
 namespace Objects {
-
-public abstract class EnvironmentElement
+      [System.Serializable]
+      public abstract class EnvironmentElement
       {
-            protected Vector3 _position;
-            protected Vector3 _rotation;
+            protected SerializableVector3 _position;
+            protected SerializableVector3 _rotation;
             protected int _id;
       }
 }

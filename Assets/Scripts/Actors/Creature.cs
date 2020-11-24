@@ -5,11 +5,11 @@ namespace Actors
     public class Creature
     {
         protected Vector3 _position;
-        protected Vector3 _rotation;
+        protected float _rotation;
         protected float _health;
         
         public Vector3 position => _position;
-        public Vector3 rotation => _rotation;
+        public float rotation => _rotation;
         public float health => _health;
 
         public void SetPosition(Vector3 value)
@@ -17,7 +17,7 @@ namespace Actors
             _position = value;
         }
         
-        public void SetRotation(Vector3 value)
+        public void SetRotation(float value)
         {
             _rotation = value;
         }
