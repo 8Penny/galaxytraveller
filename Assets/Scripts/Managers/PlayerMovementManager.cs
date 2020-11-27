@@ -51,8 +51,13 @@ namespace Managers
                 Time.fixedDeltaTime * RotationSpeed * 100f);
 
             _playerPosition = _playerRigitbody.position + _moveDirection * (MovementSpeed * Time.fixedDeltaTime);
-
             _playerRigitbody.MoveRotation(_playerRotation);
+
+            if (_moveDirection == Vector3.zero)
+            {
+                _playerRigitbody.velocity /= 2;
+                return;
+            }
             _playerRigitbody.MovePosition(_playerPosition);
         }
 

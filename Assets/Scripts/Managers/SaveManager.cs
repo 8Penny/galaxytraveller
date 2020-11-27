@@ -11,7 +11,7 @@ namespace Managers
     public class SaveManager
     {
         private Game _game;
-        private Save _save;
+        private Save _save = new Save();
 
         private readonly string _savePath;
 
@@ -34,6 +34,10 @@ namespace Managers
             _save.playerHealth = _game.player.health;
             _save.playerPoints = _game.player.points;
             _save.playerRang = _game.player.rang;
+
+            _save.playerPosition = _game.player.position;
+            _save.playerRotation = _game.player.rotation;
+            
             _save.playerInventory = new InventoryStorage();
         }
 
