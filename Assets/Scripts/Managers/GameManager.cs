@@ -15,7 +15,7 @@ namespace Managers
         private SaveManager _saveManager;
         private bool _loaded;
 
-        private void Start()
+        private void Awake()
         {
             var game = new Game();
             

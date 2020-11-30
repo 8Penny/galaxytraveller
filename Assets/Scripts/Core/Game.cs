@@ -9,10 +9,17 @@ namespace Core
         private Player _player;
         private HomePlanet _homePlanet;
 
+        private int _currentPanel;
+
         public static Game instance => _instance;
 
         public Player player => _player;
         public HomePlanet homePlanet => _homePlanet;
+        public int currentPanel => _currentPanel;
+        
+        public delegate void ChangePanelEvent();
+        private event ChangePanelEvent Changed;
+
 
 
         public Game()
@@ -39,5 +46,21 @@ namespace Core
 
             _homePlanet.FillEnvironmentElements(save.homePlanetElements);
         }
+
+        public void Bind(ChangePanelEvent function)
+        {
+            Changed += function;
+        }
+        public void Loose(ChangePanelEvent function)
+        {
+            Changed -= function;
+        }
+
+        public void SetCurrentPanel(int index)
+        {
+            _currentPanel = index;
+            Changed?.Invoke();
+        }
+        
     }
 }
