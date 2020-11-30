@@ -9,7 +9,7 @@ namespace Managers
         [SerializeField] private Rigidbody _playerRigitbody;
 
         private const float MovementSpeed = 2.5f;
-        private const float RotationSpeed = 3f;
+        private const float RotationSpeed = 1.7f;
 
         private Vector3 _smoothMoveVelocity;
         private Vector3 _moveAmount;
@@ -34,7 +34,7 @@ namespace Managers
             var playerRotation = _playerRigitbody.rotation;
             _moveDirection = playerRotation * direction;
 
-            _rotationDirection = new Vector3(0, inputHorizontal, 0);
+            _rotationDirection = new Vector3(0, inputHorizontal * RotationSpeed, 0);
         }
         public void MovePlayer()
         {
@@ -47,8 +47,7 @@ namespace Managers
             var playerRotation = _playerRigitbody.rotation;
             var deltaRotation = Quaternion.Euler(_rotationDirection);
             var targetRotation = playerRotation * deltaRotation;
-            _playerRotation = Quaternion.Lerp(_playerRigitbody.rotation, targetRotation,
-                Time.fixedDeltaTime * RotationSpeed * 100f);
+            _playerRotation = Quaternion.Lerp(_playerRigitbody.rotation, targetRotation, Time.fixedTime);
 
             _playerPosition = _playerRigitbody.position + _moveDirection * (MovementSpeed * Time.fixedDeltaTime);
             _playerRigitbody.MoveRotation(_playerRotation);
