@@ -6,7 +6,7 @@ namespace Windows
 {
     public class WindowView: MonoBehaviour
     {
-        [SerializeField] private GameObject _panelGO;
+        [SerializeField] private GameObject _panelGO = null;
         private WindowPresenter _presenter;
 
         public enum Panel

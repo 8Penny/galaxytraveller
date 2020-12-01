@@ -5,8 +5,8 @@ namespace Utils
 {
     public class BusyZone : MonoBehaviour
     {
-        [SerializeField] private Vector3 _position;
-        [SerializeField] private float _radius;
+        [SerializeField] private Vector3 _position = Vector3.zero;
+        [SerializeField] private float _radius = 0;
         
         public Vector3 position => _position; 
         public float radius => _radius;

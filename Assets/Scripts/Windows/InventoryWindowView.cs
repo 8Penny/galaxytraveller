@@ -6,7 +6,7 @@ namespace Windows
 {
     public class InventoryWindowView : WindowView
     {
-        [SerializeField] private Button _useButton;
+        [SerializeField] private Button _useButton = null;
         
         public void OnCloseButtonClick()
         {

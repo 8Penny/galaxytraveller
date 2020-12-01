@@ -8,9 +8,9 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private EnvironmentSpawnerPresenter _environmentSpawner;
-        [SerializeField] private GravityManager _gravityManager;
-        [SerializeField] private PlayerMovementManager _playerMovementManager;
+        [SerializeField] private EnvironmentSpawnerPresenter _environmentSpawner = null;
+        [SerializeField] private GravityManager _gravityManager = null;
+        [SerializeField] private PlayerMovementManager _playerMovementManager = null;
 
         private SaveManager _saveManager;
         private bool _loaded;

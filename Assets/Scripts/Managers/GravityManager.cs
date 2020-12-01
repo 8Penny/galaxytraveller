@@ -5,8 +5,8 @@ namespace Managers
 {
     public class GravityManager : MonoBehaviour
     {
-        [SerializeField] private Transform _earthGO;
-        [SerializeField] private Rigidbody _playerRigitbody;
+        [SerializeField] private Transform _earthGO = null;
+        [SerializeField] private Rigidbody _playerRigitbody = null;
         
         private float _earthRadius;
 

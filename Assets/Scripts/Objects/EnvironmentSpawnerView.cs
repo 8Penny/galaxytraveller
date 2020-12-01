@@ -9,14 +9,14 @@ namespace Objects
 {
     public class EnvironmentSpawnerView : MonoBehaviour
     {
-        [SerializeField] private Transform _planetGO;
-        [SerializeField] private Transform _earthGO;
-        [SerializeField] private ItemToSpawn[] _rocks;
+        [SerializeField] private Transform _planetGO = null;
+        [SerializeField] private Transform _earthGO = null;
+        [SerializeField] private ItemToSpawn[] _rocks = null;
 
-        [SerializeField] private uint _pointsOnPlanetCount;
-        [SerializeField] private uint _rockElementsCount;
+        [SerializeField] private uint _pointsOnPlanetCount = 0;
+        [SerializeField] private uint _rockElementsCount = 0;
 
-        [SerializeField] private BusyZone[] _busyZones;
+        [SerializeField] private BusyZone[] _busyZones = null;
 
         public Transform planetGO => _planetGO;
         public Transform earthGO => _earthGO;

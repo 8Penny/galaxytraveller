@@ -6,9 +6,9 @@ namespace Windows
 {
     public class MainWindowView : WindowView
     {
-        [SerializeField] private Button _inventoryButton;
-        [SerializeField] private Button _builderButton;
-        [SerializeField] private Button _attackButton;
+        [SerializeField] private Button _inventoryButton = null;
+        [SerializeField] private Button _builderButton = null;
+        [SerializeField] private Button _attackButton = null;
         
         public void OnInventoryButtonClick()
         {

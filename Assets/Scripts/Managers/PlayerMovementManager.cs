@@ -6,7 +6,7 @@ namespace Managers
 {
     public class PlayerMovementManager : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _playerRigitbody;
+        [SerializeField] private Rigidbody _playerRigitbody = null;
 
         private const float MovementSpeed = 2.5f;
         private const float RotationSpeed = 1.7f;

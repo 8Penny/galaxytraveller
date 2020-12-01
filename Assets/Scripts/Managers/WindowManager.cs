@@ -7,12 +7,12 @@ namespace Managers
 {
     public class WindowManager : MonoBehaviour
     {
-        [SerializeField] private MainWindowView _mainWindowView;
-        [SerializeField] private InventoryWindowView _inventoryWindowView;
+        [SerializeField] private MainWindowView _mainWindowView = null;
+        [SerializeField] private InventoryWindowView _inventoryWindowView = null;
         
     
-        [SerializeField] private MainWindowPresenter _mainWindowPresenter;
-        [SerializeField] private InventoryWindowPresenter _inventoryWindowPresenter;
+        [SerializeField] private MainWindowPresenter _mainWindowPresenter = null;
+        [SerializeField] private InventoryWindowPresenter _inventoryWindowPresenter = null;
 
         private List<WindowPresenter> _panels;
 
