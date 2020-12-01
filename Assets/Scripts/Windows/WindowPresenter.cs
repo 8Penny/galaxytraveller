@@ -40,7 +40,6 @@ namespace Windows
                 
         public void OnCloseButtonClick()
         {
-            Game.instance.SetCurrentPanel((int)WindowView.Panel.Main);
         }
     }
 }

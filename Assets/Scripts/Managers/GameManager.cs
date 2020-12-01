@@ -17,7 +17,7 @@ namespace Managers
 
         private void Awake()
         {
-            var game = new Game();
+            var game = Game.instance;
             
             _saveManager = new SaveManager();
             var save = _saveManager.LoadGame();

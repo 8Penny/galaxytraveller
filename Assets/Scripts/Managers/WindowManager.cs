@@ -19,7 +19,7 @@ namespace Managers
 
         private void Awake()
         {
-            Game.instance.Bind(UpdatePanelsVisibility);
+
             _mainWindowView.AddPresenter(_mainWindowPresenter);
             _inventoryWindowView.AddPresenter(_inventoryWindowPresenter);
             
@@ -53,7 +53,7 @@ namespace Managers
 
         private void OnDestroy()
         {
-            Game.instance.Loose(UpdatePanelsVisibility);
+            //Game.instance.Loose(UpdatePanelsVisibility);
         }
     }
 }

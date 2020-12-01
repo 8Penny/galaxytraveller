@@ -6,7 +6,7 @@ namespace Windows
     {
         public void OnInventoryButtonClick()
         {
-            Game.instance.SetCurrentPanel((int)WindowView.Panel.Inventory);
+
         }
     }
 }
