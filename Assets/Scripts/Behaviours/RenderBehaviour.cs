@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "RenderBehaviour", menuName = "Behaviours/RenderBehaviour")]
     public class RenderBehaviour : BaseBehaviour
     {
         public override void OnBehaviourEnable()

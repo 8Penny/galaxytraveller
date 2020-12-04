@@ -4,6 +4,7 @@ using Behaviours;
 using Core;
 using Data;
 using Managers;
+using UnityEditor;
 using UnityEngine;
 using Views;
 
@@ -14,7 +15,7 @@ namespace Actors
         [SerializeField] private ActorInfo _actorInfo;
         [SerializeField] private UpdateContainer _updateContainer;
         [SerializeField] private DataContainer _inputDataContainer;
-        [SerializeField] private PlayerView _playerView;
+        
 
         [Serializable]
         public class ActorInfo
@@ -26,6 +27,7 @@ namespace Actors
         [Serializable]
         public class UpdateContainer
         {
+            public List<BaseBehaviour> setupBehaviours;
             public List<BaseBehaviour> updates;
             public List<BaseBehaviour> fixedUpdates;
             public List<BaseBehaviour> lateUpdates;
@@ -39,13 +41,15 @@ namespace Actors
 
         private Dictionary<Type, BaseData> _data = new Dictionary<Type, BaseData>();
         private List<BaseBehaviour> _behaviours = new List<BaseBehaviour>();
+        private bool _loaded;
 
         private void Awake()
         {
             BuildBehavioursList();
             BuildDataDictionary();
-            FillRenderData();
+            FillDataFromView();
             UpdateBehavioursData();
+            _loaded = true;
         }
 
         private void OnEnable()
@@ -60,19 +64,27 @@ namespace Actors
             RemoveBehavioursFromUpdateManager();
         }
 
-//        private void OnValidate()
-//        {
-//            BuildDataDictionary();
-//            UpdateBehavioursData();
-//            RemoveBehavioursFromUpdateManager();
-//            AddBehavioursToUpdateManager();
-//        }
+        private void OnValidate()
+        {
+            if (_loaded && EditorApplication.isPlaying)
+            {
+                Debug.Log("Validate");
+                RemoveBehavioursFromUpdateManager();
+                BuildBehavioursList();
+                UpdateBehavioursData();
+                CallEnableBehaviours();
+                AddBehavioursToUpdateManager();
+            }
+
+        }
 
         private void BuildBehavioursList()
-        { 
-            _updateContainer.updates.ForEach(p => _behaviours.Add(p));
-            _updateContainer.fixedUpdates.ForEach(p => _behaviours.Add(p));
-            _updateContainer.lateUpdates.ForEach(p => _behaviours.Add(p));
+        {
+            _behaviours = new List<BaseBehaviour>();
+            _updateContainer.setupBehaviours.ForEach(p => _behaviours.Add(Instantiate(p)));
+            _updateContainer.updates.ForEach(p => _behaviours.Add(Instantiate(p)));
+            _updateContainer.fixedUpdates.ForEach(p => _behaviours.Add(Instantiate(p)));
+            _updateContainer.lateUpdates.ForEach(p => _behaviours.Add(Instantiate(p)));
         }
 
         private void BuildDataDictionary()
@@ -83,7 +95,7 @@ namespace Actors
             }
         }
 
-        private BaseData GetData(Type type)
+        protected BaseData GetData(Type type)
         {
             if (_data.TryGetValue(type, out var data))
             {
@@ -146,17 +158,8 @@ namespace Actors
             }
         }
 
-        private void FillRenderData()
+        protected virtual void FillDataFromView()
         {
-            var renderData = GetData(typeof(RenderData)) as RenderData;
-            if (renderData == null)
-            {
-                return;
-            }
-
-            renderData.rigidbody = _playerView.rigidbody;
-            renderData.transform = _playerView.transform;
-            renderData.boxCollider = _playerView.boxCollider;
         }
     }
 }

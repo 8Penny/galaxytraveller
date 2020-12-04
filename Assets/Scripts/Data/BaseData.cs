@@ -2,7 +2,6 @@
 
 namespace Data
 {
-    
     public class BaseData : ScriptableObject
     {
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "MovementBehaviour", menuName = "Behaviours/MovementBehaviour")]
     public class MovementBehaviour : BaseBehaviour, ITickFixed
     {
         private MovementData _movementData;

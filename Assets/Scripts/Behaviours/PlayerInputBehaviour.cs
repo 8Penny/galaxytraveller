@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "PlayerInputBehaviour", menuName = "Behaviours/PlayerInputBehaviour")]
     public class PlayerInputBehaviour : BaseBehaviour, ITick
     {
         private PlayerInputData _playerInputData;

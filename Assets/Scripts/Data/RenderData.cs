@@ -2,11 +2,11 @@
 
 namespace Data
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "RenderData", menuName = "Data/RenderData")]
     public class RenderData : BaseData
     {
-        public Transform transform;
-        public Rigidbody rigidbody;
-        public BoxCollider boxCollider;
+        [HideInInspector] public Transform transform;
+        [HideInInspector] public Rigidbody rigidbody;
+        [HideInInspector] public BoxCollider boxCollider;
     }
 }

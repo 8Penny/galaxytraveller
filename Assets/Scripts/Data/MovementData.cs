@@ -2,7 +2,7 @@
 
 namespace Data
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "MovementData", menuName = "Data/MovementData")]
     public class MovementData : BaseData
     {
         public float movementSpeed = 2.5f;

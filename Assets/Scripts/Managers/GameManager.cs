@@ -9,8 +9,8 @@ namespace Managers
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private EnvironmentSpawnerPresenter _environmentSpawner = null;
-        [SerializeField] private GravityManager _gravityManager = null;
-        [SerializeField] private PlayerMovementManager _playerMovementManager = null;
+        //[SerializeField] private GravityManager _gravityManager = null;
+        //[SerializeField] private PlayerMovementManager _playerMovementManager = null;
 
         private SaveManager _saveManager;
         private bool _loaded;
@@ -26,7 +26,7 @@ namespace Managers
             if (save != null)
             {
                 game.LoadGameData(save);
-                _playerMovementManager.UpdatePlayerPositionAndRotation();
+                //_playerMovementManager.UpdatePlayerPositionAndRotation();
             }
             else
             {
@@ -44,8 +44,8 @@ namespace Managers
             {
                 return;
             }
-            _playerMovementManager.MovePlayer();
-            _gravityManager.Attract();
+            //_playerMovementManager.MovePlayer();
+           // _gravityManager.Attract();
         }
 
         private void OnApplicationQuit()

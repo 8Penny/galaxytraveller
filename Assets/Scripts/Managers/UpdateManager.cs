@@ -16,7 +16,10 @@ namespace Managers
         public static void AddTo(object updatable)
         {
             var mngUpdate = GameCore.Get<UpdateManager>();
-
+            if (mngUpdate == null)
+            {
+                return;
+            }
             switch (updatable)
             {
                 case ITick tick:
@@ -34,6 +37,10 @@ namespace Managers
         public static void RemoveFrom(object updatable)
         {
             var mngUpdate = GameCore.Get<UpdateManager>();
+            if (mngUpdate == null)
+            {
+                return;
+            }
             switch (updatable)
             {
                 case ITick tick:

@@ -32,6 +32,10 @@ namespace Core
 
         public static T Get<T>()
         {
+            if (instance == null)
+            {
+                return default(T);
+            }
             instance._managers.TryGetValue(typeof(T), out var manager);
             return (T) manager;
         }

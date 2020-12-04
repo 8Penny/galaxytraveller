@@ -2,10 +2,10 @@
 
 namespace Data
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "PlayerInputData", menuName = "Data/PlayerInputData")]
     public class PlayerInputData : BaseData
     {
-        public float horizontal;
-        public float vertical;
+        [HideInInspector] public float horizontal;
+        [HideInInspector] public float vertical;
     }
 }
