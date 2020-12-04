@@ -2,7 +2,7 @@
 
 namespace Views.Earth
 {
-    public class EarthView : MonoBehaviour
+    public class PlanetView : MonoBehaviour
     {
         public Transform transform;
     }

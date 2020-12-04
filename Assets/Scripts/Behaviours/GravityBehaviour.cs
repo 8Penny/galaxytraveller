@@ -10,13 +10,13 @@ namespace Behaviours
     public class GravityBehaviour : BaseBehaviour, ITickFixed
     {
         private RenderData _renderData;
-        private EarthData _earthData;
+        private PlanetData _planetData;
         public override IEnumerable<Type> GetDataTypeNeed()
         {
             var types = new List<Type>()
             {
                 typeof(RenderData),
-                typeof(EarthData)
+                typeof(PlanetData)
             };
             return types;
         }
@@ -26,18 +26,18 @@ namespace Behaviours
             _data.TryGetValue(typeof(RenderData), out var rData);
             _renderData = (RenderData) rData;
             
-            _data.TryGetValue(typeof(EarthData), out var eData);
-            _earthData = (EarthData) eData;
+            _data.TryGetValue(typeof(PlanetData), out var eData);
+            _planetData = (PlanetData) eData;
         }
 
         public void TickFixed()
         {
             var rb = _renderData.rigidbody;
-            var gravityUp = (rb.position - _earthData.earthPosition).normalized;
+            var gravityUp = (rb.position - _planetData.position).normalized;
             var localUp = rb.transform.up;
             
             rb.MoveRotation(Quaternion.FromToRotation(localUp, gravityUp) * rb.rotation);
-            rb.MovePosition(rb.position.normalized * _earthData.earthRadius);
+            rb.MovePosition(rb.position.normalized * _planetData.radius);
         }
     }
 }

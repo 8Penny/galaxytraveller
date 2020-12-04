@@ -7,15 +7,15 @@ namespace Actors
 {
     public class Earth : Actor
     {
-        [SerializeField] private EarthView _earthView;
+        [SerializeField] private PlanetView _planetView;
         protected override void FillDataFromView()
         {
-            var eData = GetData(typeof(EarthData)) as EarthData;
+            var eData = GetData(typeof(PlanetData)) as PlanetData;
             if (eData == null)
             {
                 return;
             }
-            eData.transform = _earthView.transform;
+            eData.transform = _planetView.transform;
         }
     }
 }

@@ -1271,8 +1271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _environmentSpawner: {fileID: 350249298}
-  _gravityManager: {fileID: 1720631306}
-  _playerMovementManager: {fileID: 1322789600}
 --- !u!1 &667522205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3174,6 +3172,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerRigitbody: {fileID: 1954943969164800450}
+  _smoothMoveVelocity: {x: 0, y: 0, z: 0}
+  _moveAmount: {x: 0, y: 0, z: 0}
+  _moveDirection: {x: 0, y: 0, z: 0}
+  _rotationDirection: {x: 0, y: 0, z: 0}
+  _playerPosition: {x: 0, y: 0, z: 0}
+  _playerRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1339540669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4411,6 +4415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _earthGO: {fileID: 293387464}
   _playerRigitbody: {fileID: 1954943969164800450}
+  _earthRadius: 0
 --- !u!850595691 &1721395710
 LightingSettings:
   m_ObjectHideFlags: 0
