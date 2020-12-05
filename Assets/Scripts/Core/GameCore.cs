@@ -40,6 +40,12 @@ namespace Core
             return (T) manager;
         }
 
+        public void OnApplicationQuit()
+        {
+            _managers.TryGetValue(typeof(SaveLoadManager), out var slMng);
+            ((SaveLoadManager)slMng)?.SaveGame();
+        }
+
 
         public void ClearScene()
         {

@@ -8,7 +8,7 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private EnvironmentSpawnerPresenter _environmentSpawner = null;
+        //[SerializeField] private EnvironmentSpawnerPresenter _environmentSpawner = null;
         //[SerializeField] private GravityManager _gravityManager = null;
         //[SerializeField] private PlayerMovementManager _playerMovementManager = null;
 
@@ -30,11 +30,11 @@ namespace Managers
             }
             else
             {
-                var homeEnvironment = _environmentSpawner.GenerateEnvironmentData();
-                game.homePlanet.FillEnvironmentElements(homeEnvironment);
+                //var homeEnvironment = _environmentSpawner.GenerateEnvironmentData();
+                //game.homePlanet.FillEnvironmentElements(homeEnvironment);
             }
 
-            _environmentSpawner.InstantiateEnvironment(game.homePlanet.environmentElements);
+            //_environmentSpawner.InstantiateEnvironment(game.homePlanet.environmentElements);
             _loaded = true;
         }
 

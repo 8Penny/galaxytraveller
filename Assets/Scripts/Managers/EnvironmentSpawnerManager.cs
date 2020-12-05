@@ -26,25 +26,26 @@ namespace Managers
 
             var saveLoadMng = GameCore.Get<SaveLoadManager>();
             var homeEnv = saveLoadMng.GetEnvironment();
-            if (homeEnv.Count == 0)
+            if ((homeEnv?.Count ?? 0) == 0)
             {
                 homeEnv = GenerateRockData();
-                
+
                 var homeLocationMng = GameCore.Get<HomeLocationManager>();
                 homeLocationMng.SetEnvironmentElements(homeEnv);
             }
+
             InstantiateEnvironment(homeEnv);
         }
 
         private void GenerateAllPositionsOnPlanet()
         {
-            var multiplier = data.planetData.radius/1.1f;
+            var multiplier = data.planetData.radius / 1.1f;
             var positions = MathExtensions.GeneratePointsOnSphere(data.pointsOnPlanetCount, multiplier);
             var rnd = new System.Random();
             rnd.Shuffle(positions, positions.Length);
             _freePositions = new Stack<Vector3>(positions);
         }
-        
+
         private void InstantiateEnvironment(IEnumerable<EnvironmentElement> elements)
         {
             foreach (var element in elements)
@@ -103,6 +104,7 @@ namespace Managers
                 {
                     continue;
                 }
+
                 positions.Add(pos);
             }
 
