@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
+using Malee.List;
 using Managers;
 using UnityEngine;
 
@@ -7,8 +8,12 @@ namespace Entry
 {
     public class Entry : MonoBehaviour
     {
-        public List<BaseManager> managers = new List<BaseManager>();
+        [Reorderable] public ManagersList managers;
 
+        [System.Serializable]
+        public class ManagersList : ReorderableArray<BaseManager>
+        {
+        }
 
         private void Awake()
         {
