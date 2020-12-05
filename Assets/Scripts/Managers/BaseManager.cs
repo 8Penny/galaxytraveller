@@ -2,7 +2,7 @@
 
 namespace Managers
 {
-    public abstract  class ManagerBase: ScriptableObject
+    public abstract  class BaseManager: ScriptableObject
     {
         
     }

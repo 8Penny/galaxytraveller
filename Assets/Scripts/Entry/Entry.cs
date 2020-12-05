@@ -7,7 +7,7 @@ namespace Entry
 {
     public class Entry : MonoBehaviour
     {
-        public List<ManagerBase> managers = new List<ManagerBase>();
+        public List<BaseManager> managers = new List<BaseManager>();
 
 
         private void Awake()

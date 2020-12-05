@@ -6,11 +6,11 @@ using Core;
 namespace Managers
 {
     [CreateAssetMenu(fileName = "ManagerUpdate", menuName = "Managers/ManagerUpdate")]
-    public class UpdateManager : ManagerBase, IAwake
+    public class UpdateManager : BaseManager, IAwake
     {
-        private List<ITick> ticks = new List<ITick>();
-        private List<ITickFixed> ticksFixes = new List<ITickFixed>();
-        private List<ITickLate> ticksLate = new List<ITickLate>();
+        private List<ITick> _ticks = new List<ITick>();
+        private List<ITickFixed> _ticksFixes = new List<ITickFixed>();
+        private List<ITickLate> _ticksLate = new List<ITickLate>();
 
 
         public static void AddTo(object updatable)
@@ -23,13 +23,13 @@ namespace Managers
             switch (updatable)
             {
                 case ITick tick:
-                    mngUpdate.ticks.Add(tick);
+                    mngUpdate._ticks.Add(tick);
                     break;
                 case ITickFixed @fixed:
-                    mngUpdate.ticksFixes.Add(@fixed);
+                    mngUpdate._ticksFixes.Add(@fixed);
                     break;
                 case ITickLate late:
-                    mngUpdate.ticksLate.Add(late);
+                    mngUpdate._ticksLate.Add(late);
                     break;
             }
         }
@@ -44,13 +44,13 @@ namespace Managers
             switch (updatable)
             {
                 case ITick tick:
-                    mngUpdate.ticks.Remove(tick);
+                    mngUpdate._ticks.Remove(tick);
                     break;
                 case ITickFixed @fixed:
-                    mngUpdate.ticksFixes.Remove(@fixed);
+                    mngUpdate._ticksFixes.Remove(@fixed);
                     break;
                 case ITickLate late:
-                    mngUpdate.ticksLate.Remove(late);
+                    mngUpdate._ticksLate.Remove(late);
                     break;
             }
         }
@@ -58,7 +58,7 @@ namespace Managers
 
         public void Tick()
         {
-            foreach (var t in ticks)
+            foreach (var t in _ticks)
             {
                 t.Tick();
             }
@@ -66,7 +66,7 @@ namespace Managers
 
         public void TickFixed()
         {
-            foreach (var t in ticksFixes)
+            foreach (var t in _ticksFixes)
             {
                 t.TickFixed();
             }
@@ -74,7 +74,7 @@ namespace Managers
 
         public void TickLate()
         {
-            foreach (var t in ticksLate)
+            foreach (var t in _ticksLate)
             {
                 t.TickLate();
             }

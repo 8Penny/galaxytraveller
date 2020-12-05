@@ -72,8 +72,7 @@ namespace Managers
                     lastAddedIndex += 1;
                 }
             }
-
-
+            
             var result = points.Take(lastAddedIndex).ToArray();
 
             var rnd = new System.Random();

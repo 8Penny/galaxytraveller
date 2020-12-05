@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82c835b84e0e4a35a35bf471f9edc1f9, type: 3}
-  m_Name: PlanetBehaviour
+  m_Script: {fileID: 11500000, guid: 72738997df2e454589adba5f8b2dd29f, type: 3}
+  m_Name: Rock3Data
   m_EditorClassIdentifier: 
+  id: 2
+  prefab: {fileID: 193073023391597882, guid: 85f278de6c824af4aac231949f475715, type: 3}
+  weight: 2

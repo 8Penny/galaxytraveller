@@ -13,7 +13,7 @@ namespace Core
         public static void Add(object obj)
         {
             var shadow = obj;
-            var manager = shadow as ManagerBase;
+            var manager = shadow as BaseManager;
 
             if (manager != null)
             {
