@@ -1201,13 +1201,15 @@ MonoBehaviour:
     id: 
     tags: []
   _updateContainer:
-    setupBehaviours: []
+    setupBehaviours:
+    - {fileID: 11400000, guid: 2743558e09353ea4b8ff5f7980730de0, type: 2}
     updates:
     - {fileID: 11400000, guid: 320e415fdc45eba4fbdafed62b68d0b5, type: 2}
     fixedUpdates:
     - {fileID: 11400000, guid: 1d63fb7f378ebfe4184eeb00e3cd15bf, type: 2}
     - {fileID: 11400000, guid: 3cec718a32f1e864d9a6db57ee5c8ac4, type: 2}
-    lateUpdates: []
+    lateUpdates:
+    - {fileID: 11400000, guid: b84c1079a42c42044b7f6eb83717a1e2, type: 2}
   _inputDataContainer:
     data:
     - {fileID: 11400000, guid: 4889a9689f5dedf4cbdb07e9af92a298, type: 2}

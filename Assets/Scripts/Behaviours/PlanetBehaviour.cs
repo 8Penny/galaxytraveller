@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Data;
+using Interfaces;
 using UnityEngine;
 
 namespace Behaviours
 {
     [CreateAssetMenu(fileName = "PlanetBehaviour", menuName = "Behaviours/PlanetBehaviour")]
-    public class PlanetBehaviour: BaseBehaviour 
+    public class PlanetBehaviour: BaseBehaviour , IAwake
     {
         private PlanetData _planetData;
         public override IEnumerable<Type> GetDataTypeNeed()
@@ -18,7 +19,7 @@ namespace Behaviours
             return types;
         }
 
-        public override void OnBehaviourEnable()
+        public void OnAwake()
         {
             _data.TryGetValue(typeof(PlanetData), out var pData);
             _planetData = (PlanetData) pData;

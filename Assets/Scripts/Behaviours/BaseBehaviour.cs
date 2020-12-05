@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Data;
+using Interfaces;
 using UnityEngine;
 
 namespace Behaviours
 {
-    public class BaseBehaviour : ScriptableObject
+    public abstract class BaseBehaviour : ScriptableObject
     {
         protected Dictionary<Type, BaseData> _data;
 
-        public virtual IEnumerable<Type> GetDataTypeNeed()
-        {
-            var types = new List<Type>() {typeof(BaseData)};
-            return types;
-        }
+        public abstract IEnumerable<Type> GetDataTypeNeed();
 
         public void SetData(Dictionary<Type, BaseData> data)
         {

@@ -40,14 +40,14 @@ namespace Managers
         {
             for (var i = 0; i < _panels.Count; i++)
             {
-                if (i == Game.instance.currentPanel)
-                {
-                    _panels[i].Show();
-                }
-                else
-                {
-                    _panels[i].Hide();
-                }
+//                if (i == Game.instance.currentPanel)
+//                {
+//                    _panels[i].Show();
+//                }
+//                else
+//                {
+//                    _panels[i].Hide();
+//                }
             }
         }
 

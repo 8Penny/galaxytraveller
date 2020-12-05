@@ -12,12 +12,15 @@ namespace Managers
     [CreateAssetMenu(fileName = "SaveLoadManager", menuName = "Managers/SaveLoadManager")]
     public class SaveLoadManager: BaseManager, IAwake
     {
-        private Save _save;
+        private Save _save = new Save();
         private string _savePath ;
         public void OnAwake()
         {
             _savePath = Application.persistentDataPath + "/gamesave.save";
-            _save = LoadGame() ?? new Save();
+            LoadGame();
+
+            var playerStatsMng = GameCore.Get<PlayerStatsManager>();
+            playerStatsMng.WriteStatsFromSave(_save);
         }
 
         public List<EnvironmentElement> GetEnvironment()
@@ -34,15 +37,16 @@ namespace Managers
 
         private void SavePlayerParameters()
         {
-//            _save.playerEnergy = _game.player.energy;
-//            _save.playerHealth = _game.player.health;
-//            _save.playerPoints = _game.player.points;
-//            _save.playerRang = _game.player.rang;
-//
-//            _save.playerPosition = _game.player.position;
-//            _save.playerRotation = _game.player.rotation;
-//            
-//            _save.playerInventory = new InventoryStorage();
+            var playerStatsMng = GameCore.Get<PlayerStatsManager>();
+            _save.playerEnergy = playerStatsMng.GetEnergy();
+            _save.playerHealth = playerStatsMng.GetHealth();
+            _save.playerPoints = playerStatsMng.GetPoints();
+            _save.playerRang = playerStatsMng.GetRang();
+
+            _save.playerPosition = playerStatsMng.GetPosition();
+            _save.playerRotation = playerStatsMng.GetRotation();
+            
+            _save.playerInventory = new InventoryStorage();
         }
 
 
@@ -58,22 +62,20 @@ namespace Managers
         }
 
 
-        private Save LoadGame()
+        private void LoadGame()
         {
             var fileNotExists = !File.Exists(_savePath);
 
             if (fileNotExists)
             {
                 Debug.Log($"file {_savePath} is not existing");
-                return null;
+                return;
             }
 
             var bf = new BinaryFormatter();
             var file = File.Open(_savePath, FileMode.Open);
             _save = (Save) bf.Deserialize(file);
             file.Close();
-
-            return _save;
         }
     }
 }

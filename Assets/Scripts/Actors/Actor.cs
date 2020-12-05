@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Behaviours;
 using Core;
 using Data;
+using Interfaces;
 using Managers;
 using UnityEditor;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace Actors
             BuildDataDictionary();
             FillDataFromView();
             UpdateBehavioursData();
+            CallAwakeBehaviours();
             _loaded = true;
         }
 
@@ -155,6 +157,14 @@ namespace Actors
             foreach (var behaviour in _behaviours)
             {
                 behaviour.OnBehaviourDisable();
+            }
+        }
+
+        private void CallAwakeBehaviours()
+        {
+            foreach (var behaviour in _behaviours)
+            {
+                (behaviour as IAwake)?.OnAwake();
             }
         }
 

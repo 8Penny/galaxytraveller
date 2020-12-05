@@ -5,7 +5,7 @@ using Core;
 
 namespace Managers
 {
-    [CreateAssetMenu(fileName = "ManagerUpdate", menuName = "Managers/ManagerUpdate")]
+    [CreateAssetMenu(fileName = "UpdateManager", menuName = "Managers/UpdateManager")]
     public class UpdateManager : BaseManager, IAwake
     {
         private List<ITick> _ticks = new List<ITick>();
