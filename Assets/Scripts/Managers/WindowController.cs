@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Windows;
 using Core;
 
 namespace Managers
 {
-    public class WindowManager : MonoBehaviour
+    public class WindowController : MonoBehaviour
     {
         [SerializeField] private MainWindowView _mainWindowView = null;
         [SerializeField] private InventoryWindowView _inventoryWindowView = null;
@@ -15,11 +16,10 @@ namespace Managers
         [SerializeField] private InventoryWindowPresenter _inventoryWindowPresenter = null;
 
         private List<WindowPresenter> _panels;
-
-
+        private WindowView.Panel _currentPanel;
+        
         private void Awake()
         {
-
             _mainWindowView.AddPresenter(_mainWindowPresenter);
             _inventoryWindowView.AddPresenter(_inventoryWindowPresenter);
             
@@ -28,7 +28,12 @@ namespace Managers
                 _mainWindowPresenter,
                 _inventoryWindowPresenter
             };
+        }
 
+        private void OnEnable()
+        {
+            _mainWindowPresenter.Bind(ChangePanel);
+            _inventoryWindowPresenter.Bind(ChangePanel);
         }
 
         private void Start()
@@ -38,22 +43,30 @@ namespace Managers
 
         private void UpdatePanelsVisibility()
         {
+            var currentPanel = (int) _currentPanel;
             for (var i = 0; i < _panels.Count; i++)
             {
-//                if (i == Game.instance.currentPanel)
-//                {
-//                    _panels[i].Show();
-//                }
-//                else
-//                {
-//                    _panels[i].Hide();
-//                }
+                if (i == currentPanel)
+                {
+                    _panels[i].Show();
+                }
+                else
+                {
+                    _panels[i].Hide();
+                }
             }
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            //Game.instance.Loose(UpdatePanelsVisibility);
+            _mainWindowPresenter.Loose(ChangePanel);
+            _inventoryWindowPresenter.Loose(ChangePanel);
+        }
+
+        private void ChangePanel(WindowView.Panel ind)
+        {
+            _currentPanel = ind;
+            UpdatePanelsVisibility();
         }
     }
 }

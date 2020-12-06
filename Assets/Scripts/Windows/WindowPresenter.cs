@@ -3,22 +3,36 @@ using UnityEngine;
 
 namespace Windows
 {
-    public class WindowPresenter : MonoBehaviour
+    public abstract class WindowPresenter : MonoBehaviour
     {
+        public delegate void ChangePanelEvent(WindowView.Panel id);
         public delegate void ChangeEvent();
+        public bool isVisible => _isVisible;
+        private event ChangePanelEvent PanelChanged;
         private event ChangeEvent Changed;
 
         private bool _isVisible;
-        public bool isVisible => _isVisible;
+
+        protected abstract WindowView.Panel GetPresenterId();
 
         public void Bind(ChangeEvent function)
         {
             Changed += function;
         }
 
+        public void Bind(ChangePanelEvent function)
+        {
+            PanelChanged += function;
+        }
+
         public void Loose(ChangeEvent function)
         {
             Changed -= function;
+        }
+        
+        public void Loose(ChangePanelEvent function)
+        {
+            PanelChanged -= function;
         }
 
         public void Show()
@@ -37,9 +51,20 @@ namespace Windows
         {
             Changed?.Invoke();;
         }
-                
-        public void OnCloseButtonClick()
+
+        protected void TryChangePanel(WindowView.Panel id)
         {
+            PanelChanged?.Invoke(id);
+        }
+
+        protected void TryClosePanel()
+        {
+            if (GetPresenterId() == WindowView.Panel.Main)
+            {
+                return;
+            }
+
+            TryChangePanel(WindowView.Panel.Main);
         }
     }
 }

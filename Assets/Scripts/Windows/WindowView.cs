@@ -9,10 +9,11 @@ namespace Windows
         [SerializeField] private GameObject _panelGO = null;
         private WindowPresenter _presenter;
 
+        [Serializable]
         public enum Panel
         {
-            Main = 0,
-            Inventory = 1
+            Main,
+            Inventory
         }
 
         public void AddPresenter(WindowPresenter presenter)
