@@ -8,7 +8,7 @@ namespace Managers
     [CreateAssetMenu(fileName = "PlayerStatsManager", menuName = "Managers/PlayerStatsManager")]
     public class PlayerStatsManager: BaseManager
     {
-        [SerializeField] private RenderData _rData;
+        [SerializeField] private RBData _rData;
         [SerializeField] private PlayerStatsData _stats;
 
         public Vector3 GetPosition()

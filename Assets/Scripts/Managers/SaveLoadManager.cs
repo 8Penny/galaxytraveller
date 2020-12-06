@@ -7,15 +7,13 @@ using Objects;
 using Storage;
 using UnityEngine;
 
-namespace Managers
-{
+namespace Managers {
     [CreateAssetMenu(fileName = "SaveLoadManager", menuName = "Managers/SaveLoadManager")]
-    public class SaveLoadManager: BaseManager, IAwake
-    {
+    public class SaveLoadManager : BaseManager, IAwake {
         private Save _save = new Save();
-        private string _savePath ;
-        public void OnAwake()
-        {
+        private string _savePath;
+
+        public void OnAwake() {
             _savePath = Application.persistentDataPath + "/gamesave.save";
             LoadGame();
 
@@ -23,20 +21,17 @@ namespace Managers
             playerStatsMng.WriteStatsFromSave(_save);
         }
 
-        public List<EnvironmentElement> GetEnvironment()
-        {
+        public List<EnvironmentElement> GetEnvironment() {
             return _save.homePlanetElements;
         }
-        
-        private void SaveHomeLocation()
-        {
+
+        private void SaveHomeLocation() {
             var homeLocationMng = GameCore.Get<HomeLocationManager>();
             _save.homePlanetElements = homeLocationMng.GetEnvironmentElements();
         }
 
 
-        private void SavePlayerParameters()
-        {
+        private void SavePlayerParameters() {
             var playerStatsMng = GameCore.Get<PlayerStatsManager>();
             _save.playerEnergy = playerStatsMng.GetEnergy();
             _save.playerHealth = playerStatsMng.GetHealth();
@@ -45,13 +40,12 @@ namespace Managers
 
             _save.playerPosition = playerStatsMng.GetPosition();
             _save.playerRotation = playerStatsMng.GetRotation();
-            
+
             _save.playerInventory = new InventoryStorage();
         }
 
 
-        public void SaveGame()
-        {
+        public void SaveGame() {
             SavePlayerParameters();
             SaveHomeLocation();
 
@@ -62,12 +56,10 @@ namespace Managers
         }
 
 
-        private void LoadGame()
-        {
+        private void LoadGame() {
             var fileNotExists = !File.Exists(_savePath);
 
-            if (fileNotExists)
-            {
+            if (fileNotExists) {
                 Debug.Log($"file {_savePath} is not existing");
                 return;
             }

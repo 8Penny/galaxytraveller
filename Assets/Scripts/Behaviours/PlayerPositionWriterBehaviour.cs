@@ -11,21 +11,21 @@ namespace Behaviours
     [CreateAssetMenu(fileName = "PlayerPositionWriterBehaviour", menuName = "Behaviours/PlayerPositionWriterBehaviour")]
     public class PlayerPositionWriterBehaviour: BaseBehaviour, ITickLate
     {
-        private RenderData _rData;
+        private RBData _rData;
         private PlayerStatsManager _playerStatsMng;
         public override IEnumerable<Type> GetDataTypeNeed()
         {
             var types = new List<Type>()
             {
-                typeof(RenderData)
+                typeof(RBData)
             };
             return types;
         }
 
         public override void OnBehaviourEnable(){
             _playerStatsMng = GameCore.Get<PlayerStatsManager>();
-            _data.TryGetValue(typeof(RenderData), out var d);
-            _rData = (RenderData) d;
+            _data.TryGetValue(typeof(RBData), out var d);
+            _rData = (RBData) d;
         }
 
         public void TickLate()

@@ -9,25 +9,21 @@ using UnityEditor;
 using UnityEngine;
 using Views;
 
-namespace Actors
-{
-    public class Actor : MonoBehaviour
-    {
+namespace Actors {
+    public class Actor : MonoBehaviour {
         [SerializeField] private ActorInfo _actorInfo;
         [SerializeField] private UpdateContainer _updateContainer;
         [SerializeField] private DataContainer _inputDataContainer;
-        
+
 
         [Serializable]
-        public class ActorInfo
-        {
+        public class ActorInfo {
             public string id;
             public List<string> tags;
         }
 
         [Serializable]
-        public class UpdateContainer
-        {
+        public class UpdateContainer {
             public List<BaseBehaviour> setupBehaviours;
             public List<BaseBehaviour> updates;
             public List<BaseBehaviour> fixedUpdates;
@@ -35,8 +31,7 @@ namespace Actors
         }
 
         [Serializable]
-        public class DataContainer
-        {
+        public class DataContainer {
             public List<BaseData> data;
         }
 
@@ -44,44 +39,40 @@ namespace Actors
         private List<BaseBehaviour> _behaviours = new List<BaseBehaviour>();
         private bool _loaded;
 
-        private void Awake()
-        {
+        private void Awake() {
             BuildBehavioursList();
             BuildDataDictionary();
             FillDataFromView();
             UpdateBehavioursData();
             CallAwakeBehaviours();
             _loaded = true;
+            AfterAwake();
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             CallEnableBehaviours();
             AddBehavioursToUpdateManager();
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             CallDisableBehaviours();
             RemoveBehavioursFromUpdateManager();
         }
 
-        private void OnValidate()
-        {
-            if (_loaded && EditorApplication.isPlaying)
-            {
-                Debug.Log("Validate");
-                RemoveBehavioursFromUpdateManager();
-                BuildBehavioursList();
-                UpdateBehavioursData();
-                CallEnableBehaviours();
-                AddBehavioursToUpdateManager();
+        private void OnValidate() {
+            if (!_loaded || !EditorApplication.isPlaying) {
+                return;
             }
 
+            Debug.Log("Validate");
+            RemoveBehavioursFromUpdateManager();
+            BuildBehavioursList();
+            UpdateBehavioursData();
+            CallEnableBehaviours();
+            AddBehavioursToUpdateManager();
         }
 
-        private void BuildBehavioursList()
-        {
+        private void BuildBehavioursList() {
             _behaviours = new List<BaseBehaviour>();
             _updateContainer.setupBehaviours.ForEach(p => _behaviours.Add(Instantiate(p)));
             _updateContainer.updates.ForEach(p => _behaviours.Add(Instantiate(p)));
@@ -89,18 +80,14 @@ namespace Actors
             _updateContainer.lateUpdates.ForEach(p => _behaviours.Add(Instantiate(p)));
         }
 
-        private void BuildDataDictionary()
-        {
-            foreach (var data in _inputDataContainer.data)
-            {
+        private void BuildDataDictionary() {
+            foreach (var data in _inputDataContainer.data) {
                 _data.Add(data.GetType(), Instantiate(data));
             }
         }
 
-        protected BaseData GetData(Type type)
-        {
-            if (_data.TryGetValue(type, out var data))
-            {
+        protected BaseData GetData(Type type) {
+            if (_data.TryGetValue(type, out var data)) {
                 return data;
             }
 
@@ -108,19 +95,15 @@ namespace Actors
             return null;
         }
 
-        private void UpdateBehavioursData()
-        {
+        private void UpdateBehavioursData() {
             UpdateSpecificBehaviours(_behaviours);
         }
 
-        private void UpdateSpecificBehaviours(IEnumerable<BaseBehaviour> behaviours)
-        {
-            foreach (var behaviour in behaviours)
-            {
+        private void UpdateSpecificBehaviours(IEnumerable<BaseBehaviour> behaviours) {
+            foreach (var behaviour in behaviours) {
                 var needTypes = behaviour.GetDataTypeNeed();
                 var dict = new Dictionary<Type, BaseData>();
-                foreach (var type in needTypes)
-                {
+                foreach (var type in needTypes) {
                     dict.Add(type, GetData(type));
                 }
 
@@ -128,48 +111,40 @@ namespace Actors
             }
         }
 
-        private void AddBehavioursToUpdateManager()
-        {
-            foreach (var behaviour in _behaviours)
-            {
+        private void AddBehavioursToUpdateManager() {
+            foreach (var behaviour in _behaviours) {
                 UpdateManager.AddTo(behaviour);
             }
         }
 
-        private void RemoveBehavioursFromUpdateManager()
-        {
-            foreach (var behaviour in _behaviours)
-            {
+        private void RemoveBehavioursFromUpdateManager() {
+            foreach (var behaviour in _behaviours) {
                 UpdateManager.RemoveFrom(behaviour);
             }
         }
 
-        private void CallEnableBehaviours()
-        {
-            foreach (var behaviour in _behaviours)
-            {
+        private void CallEnableBehaviours() {
+            foreach (var behaviour in _behaviours) {
                 behaviour.OnBehaviourEnable();
             }
         }
 
-        private void CallDisableBehaviours()
-        {
-            foreach (var behaviour in _behaviours)
-            {
+        private void CallDisableBehaviours() {
+            foreach (var behaviour in _behaviours) {
                 behaviour.OnBehaviourDisable();
             }
         }
 
-        private void CallAwakeBehaviours()
-        {
-            foreach (var behaviour in _behaviours)
-            {
+        private void CallAwakeBehaviours() {
+            foreach (var behaviour in _behaviours) {
                 (behaviour as IAwake)?.OnAwake();
             }
         }
 
-        protected virtual void FillDataFromView()
-        {
+        protected virtual void FillDataFromView() {
+        }
+
+        protected virtual void AfterAwake() {
         }
     }
 }

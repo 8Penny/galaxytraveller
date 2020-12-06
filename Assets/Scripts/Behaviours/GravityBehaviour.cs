@@ -9,13 +9,13 @@ namespace Behaviours
     [CreateAssetMenu(fileName = "GravityBehaviour", menuName = "Behaviours/GravityBehaviour")]
     public class GravityBehaviour : BaseBehaviour, ITickFixed
     {
-        private RenderData _renderData;
+        private RBData _rbData;
         private PlanetData _planetData;
         public override IEnumerable<Type> GetDataTypeNeed()
         {
             var types = new List<Type>()
             {
-                typeof(RenderData),
+                typeof(RBData),
                 typeof(PlanetData)
             };
             return types;
@@ -23,8 +23,8 @@ namespace Behaviours
 
         public override void OnBehaviourEnable()
         {
-            _data.TryGetValue(typeof(RenderData), out var rData);
-            _renderData = (RenderData) rData;
+            _data.TryGetValue(typeof(RBData), out var rData);
+            _rbData = (RBData) rData;
             
             _data.TryGetValue(typeof(PlanetData), out var eData);
             _planetData = (PlanetData) eData;
@@ -32,7 +32,7 @@ namespace Behaviours
 
         public void TickFixed()
         {
-            var rb = _renderData.rigidbody;
+            var rb = _rbData.rigidbody;
             var gravityUp = (rb.position - _planetData.position).normalized;
             var localUp = rb.transform.up;
             

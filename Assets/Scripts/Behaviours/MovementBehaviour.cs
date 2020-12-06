@@ -10,7 +10,7 @@ namespace Behaviours
     public class MovementBehaviour : BaseBehaviour, ITickFixed
     {
         private MovementData _movementData;
-        private RenderData _renderData;
+        private RBData _rbData;
         private PlayerInputData _playerInputData;
 
         public override IEnumerable<Type> GetDataTypeNeed()
@@ -18,7 +18,7 @@ namespace Behaviours
             var types = new List<Type>()
             {
                 typeof(MovementData),
-                typeof(RenderData),
+                typeof(RBData),
                 typeof(PlayerInputData)
             };
             return types;
@@ -29,8 +29,8 @@ namespace Behaviours
             _data.TryGetValue(typeof(MovementData), out var moveData);
             _movementData = (MovementData) moveData;
 
-            _data.TryGetValue(typeof(RenderData), out var renderData);
-            _renderData = (RenderData) renderData;
+            _data.TryGetValue(typeof(RBData), out var renderData);
+            _rbData = (RBData) renderData;
 
             _data.TryGetValue(typeof(PlayerInputData), out var inputData);
             _playerInputData = (PlayerInputData) inputData;
@@ -38,7 +38,7 @@ namespace Behaviours
 
         public void TickFixed()
         {
-            var playerRotation = _renderData.rigidbody.rotation;
+            var playerRotation = _rbData.rigidbody.rotation;
             var moveDirection = playerRotation * new Vector3(0, 0, _playerInputData.vertical);
 
             var rotationDirection = new Vector3(0, _playerInputData.horizontal * _movementData.rotationSpeed, 0);
@@ -46,18 +46,18 @@ namespace Behaviours
             var targetRotation = playerRotation * deltaRotation;
             playerRotation = Quaternion.Lerp(playerRotation, targetRotation, Time.fixedTime);
 
-            var playerPosition = _renderData.rigidbody.position +
+            var playerPosition = _rbData.rigidbody.position +
                                   moveDirection * (_movementData.movementSpeed * Time.fixedDeltaTime);
             
-            _renderData.rigidbody.MoveRotation(playerRotation);
+            _rbData.rigidbody.MoveRotation(playerRotation);
 
             if (moveDirection == Vector3.zero)
             {
-                _renderData.rigidbody.velocity /= 2;
+                _rbData.rigidbody.velocity /= 2;
                 return;
             }
 
-            _renderData.rigidbody.MovePosition(playerPosition);
+            _rbData.rigidbody.MovePosition(playerPosition);
         }
     }
 }

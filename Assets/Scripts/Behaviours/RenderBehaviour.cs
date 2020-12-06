@@ -16,7 +16,7 @@ namespace Behaviours
         {
             var types = new List<Type>()
             {
-                typeof(RenderData)
+                typeof(RBData)
             };
             return types;
         }
@@ -24,9 +24,9 @@ namespace Behaviours
         public void OnAwake()
         {
             var statsMng = GameCore.Get<PlayerStatsManager>();
-            _data.TryGetValue(typeof(RenderData), out var d);
+            _data.TryGetValue(typeof(RBData), out var d);
 
-            var rData = (RenderData)d;
+            var rData = (RBData)d;
             rData.rigidbody.position = statsMng.GetPosition();
             rData.rigidbody.rotation = Quaternion.Euler(new Vector3(0,statsMng.GetRotation(),0));
         }

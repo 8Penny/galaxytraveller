@@ -122,6 +122,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7899648589674885303}
+  - component: {fileID: 3360276794481312382}
+  - component: {fileID: 6285761003659870087}
   m_Layer: 0
   m_Name: Rock01
   m_TagString: Untagged
@@ -144,3 +146,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3360276794481312382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025192919380440712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b88f8f0cf040be840e2e882e2d3c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actorInfo:
+    id: 
+    tags: []
+  _updateContainer:
+    setupBehaviours: []
+    updates: []
+    fixedUpdates: []
+    lateUpdates: []
+  _inputDataContainer:
+    data:
+    - {fileID: 11400000, guid: 5f6e3df6aabfb8f4d96abf45c08cd48d, type: 2}
+    - {fileID: 11400000, guid: 825d6daf3b97ae34daa4fb9cdcd78e75, type: 2}
+--- !u!135 &6285761003659870087
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025192919380440712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.19
+  m_Center: {x: 0, y: 0, z: 0}
