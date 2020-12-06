@@ -21,7 +21,7 @@ namespace Managers
 
         public void OnAwake()
         {
-            _planet = GameObject.Find("Planet").transform;
+            _planet = GameObject.FindWithTag(Tags.Location).transform;
             GenerateAllPositionsOnPlanet();
 
             var saveLoadMng = GameCore.Get<SaveLoadManager>();
