@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1311448305355555589}
-  - component: {fileID: 8596380593262731498}
   - component: {fileID: -2354143027020611871}
+  - component: {fileID: 1530322279397081899}
   m_Layer: 0
   m_Name: Rock03
   m_TagString: Untagged
@@ -33,30 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8596380593262731498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193073023391597882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b88f8f0cf040be840e2e882e2d3c11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actorInfo:
-    id: 
-    tags: []
-  _updateContainer:
-    setupBehaviours: []
-    updates: []
-    fixedUpdates: []
-    lateUpdates: []
-  _inputDataContainer:
-    data:
-    - {fileID: 11400000, guid: 5f6e3df6aabfb8f4d96abf45c08cd48d, type: 2}
-    - {fileID: 11400000, guid: 825d6daf3b97ae34daa4fb9cdcd78e75, type: 2}
 --- !u!135 &-2354143027020611871
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -70,6 +46,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.19
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1530322279397081899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193073023391597882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e1e16b24eb45f0a8be16d8d7443bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actorInfo:
+    id: 
+    tags: []
+  _updateContainer:
+    setupBehaviours: []
+    updates:
+    - {fileID: 11400000, guid: f8b1a9320a177f249b2f262a47c6d865, type: 2}
+    fixedUpdates: []
+    lateUpdates: []
+  _inputDataContainer:
+    data:
+    - {fileID: 11400000, guid: 5f6e3df6aabfb8f4d96abf45c08cd48d, type: 2}
+    - {fileID: 11400000, guid: 825d6daf3b97ae34daa4fb9cdcd78e75, type: 2}
+    - {fileID: 11400000, guid: ff0247f659e6ca845a1450cbd837aa1c, type: 2}
 --- !u!1 &5988816308193223030
 GameObject:
   m_ObjectHideFlags: 0

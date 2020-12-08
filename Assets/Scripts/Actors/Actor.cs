@@ -49,12 +49,12 @@ namespace Actors {
             AfterAwake();
         }
 
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             CallEnableBehaviours();
             AddBehavioursToUpdateManager();
         }
 
-        private void OnDisable() {
+        protected virtual void OnDisable() {
             CallDisableBehaviours();
             RemoveBehavioursFromUpdateManager();
         }

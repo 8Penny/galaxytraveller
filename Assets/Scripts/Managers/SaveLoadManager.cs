@@ -41,7 +41,7 @@ namespace Managers {
             _save.playerPosition = playerStatsMng.GetPosition();
             _save.playerRotation = playerStatsMng.GetRotation();
 
-            _save.playerInventory = new InventoryStorage();
+            _save.playerInventory = playerStatsMng.GetInventory();
         }
 
 

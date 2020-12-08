@@ -4,9 +4,9 @@ namespace Windows
 {
     public class InventoryWindowPresenter : WindowPresenter
     {
-        protected override WindowView.Panel GetPresenterId()
+        protected override Panel GetPresenterId()
         {
-            return WindowView.Panel.Inventory;
+            return Panel.Inventory;
         }
         public void OnCloseButtonClick()
         {

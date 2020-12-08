@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Storage;
+using UnityEngine;
 
 namespace Data.PlayerStats
 {
@@ -12,5 +13,7 @@ namespace Data.PlayerStats
 
         public Vector3 position;
         public float rotation;
+
+        public InventoryStorage inventory = new InventoryStorage();
     }
 }

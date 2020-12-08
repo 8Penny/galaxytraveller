@@ -7,12 +7,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004e6b6fd6b9474bae0c34992c5c5b12, type: 3}
-  m_Name: RockInteractableData
+  m_Script: {fileID: 11500000, guid: 3f67cb2d65e7420799193746b1582c1b, type: 3}
+  m_Name: InteractionBehaviour
   m_EditorClassIdentifier: 
-  iType: 0
-  interactionTime: 0
-  interactionLightScale: 0
-  started: 0

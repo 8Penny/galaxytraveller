@@ -7,8 +7,8 @@ using UnityEngine.TestTools;
 
 namespace Actors {
     public class InteractableActor : Actor {
-        private InteractableManager _interactableMng;
-        private InteractableData _interactableData;
+        protected InteractableManager _interactableMng;
+        protected InteractableData _interactableData;
         private RenderingData _renderingData;
 
         protected override void AfterAwake() {
@@ -33,7 +33,7 @@ namespace Actors {
                 return;
             }
 
-            _interactableMng.RemoveInteractable(_interactableData, _renderingData);
+            _interactableMng.RemoveInteractable(_interactableData);
         }
     }
 }

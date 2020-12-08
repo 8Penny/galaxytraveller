@@ -3,25 +3,21 @@ using Interfaces;
 using UnityEngine;
 using Core;
 
-namespace Managers
-{
+namespace Managers {
     [CreateAssetMenu(fileName = "UpdateManager", menuName = "Managers/UpdateManager")]
-    public class UpdateManager : BaseManager, IAwake
-    {
+    public class UpdateManager : BaseManager, IAwake {
         private List<ITick> _ticks = new List<ITick>();
         private List<ITickFixed> _ticksFixes = new List<ITickFixed>();
         private List<ITickLate> _ticksLate = new List<ITickLate>();
 
 
-        public static void AddTo(object updatable)
-        {
+        public static void AddTo(object updatable) {
             var mngUpdate = GameCore.Get<UpdateManager>();
-            if (mngUpdate == null)
-            {
+            if (mngUpdate == null) {
                 return;
             }
-            switch (updatable)
-            {
+
+            switch (updatable) {
                 case ITick tick:
                     mngUpdate._ticks.Add(tick);
                     break;
@@ -34,15 +30,13 @@ namespace Managers
             }
         }
 
-        public static void RemoveFrom(object updatable)
-        {
+        public static void RemoveFrom(object updatable) {
             var mngUpdate = GameCore.Get<UpdateManager>();
-            if (mngUpdate == null)
-            {
+            if (mngUpdate == null) {
                 return;
             }
-            switch (updatable)
-            {
+
+            switch (updatable) {
                 case ITick tick:
                     mngUpdate._ticks.Remove(tick);
                     break;
@@ -56,33 +50,26 @@ namespace Managers
         }
 
 
-        public void Tick()
-        {
-            foreach (var t in _ticks)
-            {
-                t.Tick();
+        public void Tick() {
+            for (var i = 0; i < _ticks.Count; i++) {
+                _ticks[i].Tick();
             }
         }
 
-        public void TickFixed()
-        {
-            foreach (var t in _ticksFixes)
-            {
-                t.TickFixed();
+        public void TickFixed() {
+            for (var i = 0; i < _ticksFixes.Count; i++) {
+                _ticksFixes[i].TickFixed();
             }
         }
 
-        public void TickLate()
-        {
-            foreach (var t in _ticksLate)
-            {
-                t.TickLate();
+        public void TickLate() {
+            for (var i = 0; i < _ticksLate.Count; i++) {
+                _ticksLate[i].TickLate();
             }
         }
 
 
-        public void OnAwake()
-        {
+        public void OnAwake() {
             GameObject.Find("Main").AddComponent<UpdateManagerComponent>().Setup(this);
         }
     }

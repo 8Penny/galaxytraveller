@@ -1,6 +1,8 @@
 ﻿using Core;
 using Data;
 using Data.PlayerStats;
+using Items;
+using Storage;
 using UnityEngine;
 
 namespace Managers
@@ -41,6 +43,10 @@ namespace Managers
             return _stats.energy;
         }
         
+        public InventoryStorage GetInventory() {
+            return _stats.inventory;
+        }
+        
         public void SetPosition(Vector3 value)
         {
             _stats.position = value;
@@ -61,6 +67,13 @@ namespace Managers
 
             _stats.position = save.playerPosition;
             _stats.rotation = save.playerRotation;
+
+            _stats.inventory = save.playerInventory;
+        }
+
+        public void AddToInventory(Item item) {
+            var result = _stats.inventory.TryAddNewItem(item);
+            Debug.Log($"Item {item.id} was added: {result}");
         }
     }
 }

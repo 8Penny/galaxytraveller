@@ -16,7 +16,7 @@ namespace Managers
         [SerializeField] private InventoryWindowPresenter _inventoryWindowPresenter = null;
 
         private List<WindowPresenter> _panels;
-        private WindowView.Panel _currentPanel;
+        private Panel _currentPanel;
         
         private void Awake()
         {
@@ -63,7 +63,7 @@ namespace Managers
             _inventoryWindowPresenter.Loose(ChangePanel);
         }
 
-        private void ChangePanel(WindowView.Panel ind)
+        private void ChangePanel(Panel ind)
         {
             _currentPanel = ind;
             UpdatePanelsVisibility();

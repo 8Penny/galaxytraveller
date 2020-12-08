@@ -1,22 +1,17 @@
 ﻿using System;
 using Core;
 using UnityEngine;
+using Utils;
 
 namespace Windows
 {
-    public class WindowView: MonoBehaviour
+    public class WindowView<T>: MonoBehaviour where T : WindowPresenter 
     {
         [SerializeField] private GameObject _panelGO = null;
-        private WindowPresenter _presenter;
+        protected T _presenter;
+        
 
-        [Serializable]
-        public enum Panel
-        {
-            Main,
-            Inventory
-        }
-
-        public void AddPresenter(WindowPresenter presenter)
+        public void AddPresenter(T presenter)
         {
             _presenter = presenter;
         }
@@ -33,7 +28,7 @@ namespace Windows
 
         protected virtual void OnChanged()
         {
-            _panelGO.SetActive(_presenter.isVisible);
+            _panelGO.TrySetActive(_presenter.isVisible);
         }
 
     }

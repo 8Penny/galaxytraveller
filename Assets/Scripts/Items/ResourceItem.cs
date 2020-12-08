@@ -1,10 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using Data;
 
 namespace Items
 {
-    public class ResourceItem : Item
-    {
+    [Serializable]
+    public class ResourceItem : Item {
+        public ResourceItem(string iId, int iCount) : base(iId, iCount) {
+        }
+        public ResourceItem(ItemData item) : base(item) {
+        }
     }
 }

@@ -4,22 +4,19 @@ using UnityEngine.UI;
 
 namespace Windows
 {
-    public class MainWindowView : WindowView
+    public class MainWindowView : WindowView<MainWindowPresenter>
     {
         [SerializeField] private Button _inventoryButton = null;
         [SerializeField] private Button _builderButton = null;
-        [SerializeField] private Button _attackButton = null;
+        [SerializeField] private Button _activitykButton = null;
+        [SerializeField] private Text _activitykButtonText;
         
-        public void OnInventoryButtonClick()
-        {
-        }
 
-        public void OnBuilderButtonClick()
-        {
-        }
+        protected override void OnChanged() {
+            base.OnChanged();
+            _activitykButton.interactable = _presenter.isActivityButtonEnabled;
+            _activitykButtonText.text = _presenter.activityButtonText;
 
-        public void OnAttackButtonClick()
-        {
         }
     }
 }

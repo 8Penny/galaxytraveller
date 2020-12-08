@@ -6,5 +6,7 @@ namespace Items
 {
     public class RestoringItem : Item
     {
+        public RestoringItem(string iId, int iCount) : base(iId, iCount) {
+        }
     }
 }
