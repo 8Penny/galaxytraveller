@@ -17,7 +17,7 @@ namespace Behaviours
             _data = data;
         }
 
-        public T GetDataOfType<T>() where T : BaseData {
+        protected T GetDataOfType<T>() where T : BaseData {
             _data.TryGetValue(typeof(T), out var d);
             return d as T;
         }

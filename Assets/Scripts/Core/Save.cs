@@ -9,6 +9,7 @@ namespace Core
     public class Save
     {
         public List<EnvironmentElement> homePlanetElements = new List<EnvironmentElement>();
+        public bool wasHomeGenerated;
         public InventoryStorage playerInventory = new InventoryStorage();
 
         public uint playerPoints;

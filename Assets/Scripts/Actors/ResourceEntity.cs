@@ -1,5 +1,8 @@
-﻿namespace Actors {
-    public class OneOffInteractableActor : InteractableActor {
+﻿using Core;
+using Managers;
+
+namespace Actors {
+    public class ResourceEntity : InteractableEntity {
         protected override void OnEnable() {
             base.OnEnable();
             _interactableData.BindOnFinished(OnFinish);
@@ -10,8 +13,8 @@
             _interactableData.LooseOnFinished(OnFinish);
         }
 
-        private void OnFinish() {
-            _interactableMng.RemoveInteractable(_interactableData);
+        protected override void OnFinish() {
+            base.OnFinish();
             Destroy(gameObject);
         }
     }

@@ -10,7 +10,7 @@ using UnityEngine;
 using Views;
 
 namespace Actors {
-    public class Actor : MonoBehaviour {
+    public class Entity : MonoBehaviour {
         [SerializeField] private ActorInfo _actorInfo;
         [SerializeField] private UpdateContainer _updateContainer;
         [SerializeField] private DataContainer _inputDataContainer;

@@ -6,7 +6,7 @@ namespace Data.Spawner
     public class SpawnerData : BaseData
     {
         public PlanetData planetData;
-        public RockData[] rocks;
+        public SpawnData[] rocks;
 
         public int pointsOnPlanetCount = 0;
         public int rockElementsCount = 0;

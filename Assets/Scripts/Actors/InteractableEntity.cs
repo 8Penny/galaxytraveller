@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Actors {
-    public class InteractableActor : Actor {
+    public class InteractableEntity : Entity {
         protected InteractableManager _interactableMng;
         protected InteractableData _interactableData;
         private RenderingData _renderingData;
@@ -34,6 +34,20 @@ namespace Actors {
             }
 
             _interactableMng.RemoveInteractable(_interactableData);
+        }
+        
+        protected override void OnEnable() {
+            base.OnEnable();
+            _interactableData.BindOnFinished(OnFinish);
+        }
+
+        protected override void OnDisable() {
+            base.OnDisable();
+            _interactableData.LooseOnFinished(OnFinish);
+        }
+        
+        protected virtual void OnFinish() {
+
         }
     }
 }

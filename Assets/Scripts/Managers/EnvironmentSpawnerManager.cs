@@ -26,14 +26,13 @@ namespace Managers
 
             var saveLoadMng = GameCore.Get<SaveLoadManager>();
             var homeEnv = saveLoadMng.GetEnvironment();
-            if ((homeEnv?.Count ?? 0) == 0)
+            if (!saveLoadMng.wasHomeGenerated)
             {
                 homeEnv = GenerateRockData();
-
-                var homeLocationMng = GameCore.Get<HomeLocationManager>();
-                homeLocationMng.SetEnvironmentElements(homeEnv);
+                saveLoadMng.SetHomeGenerated(true);
             }
-
+            var homeLocationMng = GameCore.Get<HomeLocationManager>();
+            homeLocationMng.SetEnvironmentElements(homeEnv);
             InstantiateEnvironment(homeEnv);
         }
 
@@ -51,7 +50,7 @@ namespace Managers
             foreach (var element in elements)
             {
                 var el = element as RockEnvironmentElement;
-                var prefab = data.rocks[el.Id].prefab;
+                var prefab = data.rocks[el.type].prefab;
                 var gameObj = Instantiate(prefab, _planet);
                 gameObj.transform.position = el.position;
                 gameObj.transform.LookAt(data.planetData.position);
@@ -86,7 +85,7 @@ namespace Managers
                 foreach (var position in positions)
                 {
                     var rotation = new Vector3(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-                    var rockData = new RockEnvironmentElement(position, rotation, rock.id);
+                    var rockData = new RockEnvironmentElement(position, rotation, rock.id, rock.type);
                     rocks.Add(rockData);
                 }
             }

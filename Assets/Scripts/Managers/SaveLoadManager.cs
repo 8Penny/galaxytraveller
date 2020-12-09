@@ -21,6 +21,12 @@ namespace Managers {
             playerStatsMng.WriteStatsFromSave(_save);
         }
 
+        public bool wasHomeGenerated => _save.wasHomeGenerated;
+
+        public void SetHomeGenerated(bool value) {
+            _save.wasHomeGenerated = value;
+        }
+
         public List<EnvironmentElement> GetEnvironment() {
             return _save.homePlanetElements;
         }

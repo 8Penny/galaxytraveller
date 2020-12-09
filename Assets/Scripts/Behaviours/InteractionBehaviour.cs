@@ -15,11 +15,13 @@ namespace Behaviours {
         private bool _isStarted;
         private InteractableData _interactableData;
         private InteractableManager _interactableMng;
+        private SuccessInteractionData _successInteractionData;
         public override IEnumerable<Type> GetDataTypeNeed() {
             var types = new List<Type>()
             {
                 typeof(InteractableData),
-                typeof(ItemData)
+                typeof(ItemData),
+                typeof(SuccessInteractionData)
             };
             return types;
         }
@@ -27,6 +29,7 @@ namespace Behaviours {
         public override void OnBehaviourEnable() {
             _interactableMng = GameCore.Get<InteractableManager>();
             _interactableData = GetDataOfType<InteractableData>();
+            _successInteractionData = GetDataOfType<SuccessInteractionData>();
         }
 
         public void Tick() {
@@ -50,13 +53,12 @@ namespace Behaviours {
                 _timer -= Time.deltaTime;
                 return;
             }
-
             _isStarted = false;
-
-            var playerStatsMng = GameCore.Get<PlayerStatsManager>();
-            var item = new ResourceItem(GetDataOfType<ItemData>());
-            playerStatsMng.AddToInventory(item);
-            _interactableData.CallOnFinished();
+            
+            _interactableMng.RemoveInteractable(_interactableData);
+            if (_successInteractionData != null) {
+                _successInteractionData.iSucceeded = true;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using Views.Earth;
 
 namespace Actors
 {
-    public class Planet : Actor
+    public class Planet : Entity
     {
         [SerializeField] private PlanetView _planetView;
         protected override void FillDataFromView()
