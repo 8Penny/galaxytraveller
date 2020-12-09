@@ -63,7 +63,9 @@ namespace Managers {
         public void SetInteractable(InteractableData interactableData, RenderingData renderingData) {
             var tupleData = new InteractableContainer(interactableData, renderingData);
             _interactionObjects.Add(tupleData);
-
+            if (_currentInteractableData?.iData.started ?? false) {
+                return;
+            }
             _interactionLight.TrySetActive(true);
         }
 

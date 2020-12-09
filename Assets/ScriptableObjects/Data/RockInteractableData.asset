@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RockInteractableData
   m_EditorClassIdentifier: 
   iType: 0
-  interactionTime: 0
+  interactionTime: 3
   interactionLightScale: 0
   started: 0

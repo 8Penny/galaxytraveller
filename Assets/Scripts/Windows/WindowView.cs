@@ -5,7 +5,7 @@ using Utils;
 
 namespace Windows
 {
-    public class WindowView<T>: MonoBehaviour where T : WindowPresenter 
+    public abstract class WindowView<T>: MonoBehaviour where T : WindowPresenter 
     {
         [SerializeField] private GameObject _panelGO = null;
         protected T _presenter;
