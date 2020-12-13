@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72738997df2e454589adba5f8b2dd29f, type: 3}
-  m_Name: Rock1SpawData
+  m_Script: {fileID: 11500000, guid: 3ec6de473a48498ebce36167e5e82cbe, type: 3}
+  m_Name: InputManager
   m_EditorClassIdentifier: 
-  id: rock1
-  prefab: {fileID: 9025192919380440712, guid: 5ca5284fe03cbee409291f62ddb9c24a, type: 3}
-  weight: 2
-  type: 0

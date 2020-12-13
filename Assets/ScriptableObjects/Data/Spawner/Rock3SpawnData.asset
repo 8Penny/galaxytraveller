@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72738997df2e454589adba5f8b2dd29f, type: 3}
-  m_Name: Rock3Data
+  m_Name: Rock3SpawnData
   m_EditorClassIdentifier: 
-  id: 2
+  id: rock3
   prefab: {fileID: 193073023391597882, guid: 85f278de6c824af4aac231949f475715, type: 3}
   weight: 2
+  type: 2

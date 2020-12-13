@@ -6,7 +6,7 @@ using Core;
 
 namespace Managers
 {
-    public class WindowController : MonoBehaviour
+    public class UIController : MonoBehaviour
     {
         [SerializeField] private MainWindowView _mainWindowView = null;
         [SerializeField] private InventoryWindowView _inventoryWindowView = null;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core;
 using Data;
 using Interfaces;
+using Managers;
 using UnityEngine;
 
 namespace Behaviours
@@ -10,6 +12,7 @@ namespace Behaviours
     public class PlayerInputBehaviour : BaseBehaviour, ITick
     {
         private PlayerInputData _playerInputData;
+        private Joystick _joystick;
         public override IEnumerable<Type> GetDataTypeNeed()
         {
             var types = new List<Type>()
@@ -23,11 +26,12 @@ namespace Behaviours
         {
             _data.TryGetValue(typeof(PlayerInputData), out var data);
             _playerInputData = (PlayerInputData) data;
+            var inputMng = GameCore.Get<InputManager>();
+            _joystick = inputMng.joystick;
         }
-        public void Tick()
-        {
-            _playerInputData.horizontal = Input.GetAxisRaw("Horizontal");
-            _playerInputData.vertical = Input.GetAxisRaw("Vertical");
+        public void Tick() {
+            _playerInputData.horizontal = _joystick.Horizontal;
+            _playerInputData.vertical = _joystick.Vertical;
         }
     }
 }
